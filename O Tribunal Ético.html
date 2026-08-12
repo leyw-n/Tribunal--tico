@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Tribunal Ético — Bentham vs. Foot</title>
+
+<style>
+:root {
+    --bg: #080b13;
+    --card: #121827;
+    --card2: #1a2133;
+    --gold: #e5c66b;
+    --gold2: #b89a43;
+    --text: #f5f5f2;
+    --muted: #aeb6c8;
+    --border: #30394f;
+    --blue: #8faaff;
+    --green: #72d6a0;
+    --red: #e27d7d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 0%, #273452 0%, #101522 35%, #080b13 75%);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: min(900px, 94%);
+    margin: auto;
+    padding: 25px 0 60px;
+}
+
+.card {
+    background: rgba(18, 24, 39, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 70px rgba(0,0,0,.45);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* INTRO */
+
+.crest {
+    text-align: center;
+    font-size: 65px;
+    margin-bottom: 5px;
+}
+
+.eyebrow {
+    text-align: center;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.title {
+    text-align: center;
+    font-size: clamp(40px, 9vw, 70px);
+    margin: 10px 0;
+    line-height: 1;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.intro-text {
+    color: #e2e6ef;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.philosophers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.philosopher {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 20px;
+}
+
+.philosopher h3 {
+    margin-top: 0;
+}
+
+.bentham {
+    border-left: 4px solid var(--gold);
+}
+
+.foot {
+    border-left: 4px solid var(--blue);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+}
+
+/* BUTTONS */
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: .18s;
+}
+
+.primary {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin-top: 25px;
+    border-radius: 15px;
+    background: var(--gold);
+    color: #151207;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 22px;
+    margin-top: 15px;
+    border-radius: 17px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.option:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.option strong {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+/* GAME */
+
+.topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.badge {
+    display: inline-block;
+    background: #252d43;
+    color: var(--gold);
+    padding: 8px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.progress {
+    height: 8px;
+    background: #252c3d;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 20px 0 30px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 20%;
+    background: var(--gold);
+    transition: width .4s;
+}
+
+.dilemma-title {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.context {
+    color: #e4e8f0;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* FEEDBACK */
+
+.verdict {
+    font-size: 27px;
+    line-height: 1.4;
+}
+
+.analysis {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.analysis-box {
+    background: #0d1320;
+    border-radius: 15px;
+    padding: 20px;
+    line-height: 1.65;
+    border-left: 4px solid var(--gold);
+}
+
+.analysis-box.foot-box {
+    border-left-color: var(--blue);
+}
+
+.analysis-box h3 {
+    margin-top: 0;
+}
+
+.score {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.score-item {
+    background: var(--card2);
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* RESULT */
+
+.result {
+    text-align: center;
+}
+
+.result-title {
+    font-size: clamp(35px, 8vw, 55px);
+    margin: 10px 0;
+}
+
+.final-score {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.profile-description {
+    color: #e3e7ef;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.final-note {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+    .container {
+        width: 96%;
+        padding-top: 12px;
+    }
+
+    .card {
+        padding: 22px 17px;
+        border-radius: 20px;
+    }
+
+    .philosophers {
+        grid-template-columns: 1fr;
+    }
+
+    .dilemma-title {
+        font-size: 25px;
+    }
+
+    .context {
+        font-size: 16px;
+    }
+
+    .option {
+        padding: 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ========================= -->
+<!-- TELA INICIAL -->
+<!-- ========================= -->
+
+<section id="startScreen" class="card">
+
+    <div class="crest">⚖️</div>
+
+    <div class="eyebrow">
+        TRIBUNAL ÉTICO
+    </div>
+
+    <h1 class="title">
+        Bentham<br>
+        <span style="font-size:.55em;color:#aeb6c8;">vs.</span><br>
+        Foot
+    </h1>
+
+    <p class="subtitle">
+        Você é o juiz. Cinco decisões. Duas filosofias.
+        Um perfil ético.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="intro-text">
+        Bem-vindo ao <strong>Tribunal Ético</strong>.
+        Você enfrentará cinco dilemas morais e deverá escolher
+        entre duas alternativas.
+    </p>
+
+    <div class="philosophers">
+
+        <div class="philosopher bentham">
+            <h3>🧮 Jeremy Bentham</h3>
+
+            <p>
+                O Utilitarismo Quantitativo avalia principalmente
+                as <strong>consequências</strong> das ações.
+            </p>
+
+            <p>
+                A pergunta central é:
+                <em>qual decisão produz mais felicidade e menos sofrimento?</em>
+            </p>
+        </div>
+
+        <div class="philosopher foot">
+            <h3>🛡️ Philippa Foot</h3>
+
+            <p>
+                A Ética das Virtudes considera o
+                <strong>caráter, a justiça e os limites morais das ações</strong>.
+            </p>
+
+            <p>
+                A pergunta central é:
+                <em>que tipo de ação é moralmente correta e virtuosa?</em>
+            </p>
+        </div>
+
+    </div>
+
+    <button class="primary" onclick="startGame()">
+        ⚖️ INICIAR JULGAMENTO
+    </button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- TELA DO DILEMA -->
+<!-- ========================= -->
+
+<section id="gameScreen" class="card hidden">
+
+    <div class="topline">
+        <span id="dilemmaCounter" class="badge">
+            DILEMA 1 DE 5
+        </span>
+
+        <span class="badge">
+            ⚖️ JULGAMENTO
+        </span>
+    </div>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-fill"></div>
+    </div>
+
+    <h2 id="dilemmaTitle" class="dilemma-title"></h2>
+
+    <p id="dilemmaContext" class="context"></p>
+
+    <div id="choices"></div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- TELA DE FEEDBACK -->
+<!-- ========================= -->
+
+<section id="feedbackScreen" class="card hidden">
+
+    <span id="choiceBadge" class="badge">
+        VEREDITO
+    </span>
+
+    <h2 id="verdict" class="verdict"></h2>
+
+    <div class="analysis">
+
+        <div class="analysis-box">
+
+            <h3>🧮 O Cálculo de Jeremy Bentham</h3>
+
+            <p id="benthamAnalysis"></p>
+
+        </div>
+
+        <div class="analysis-box foot-box">
+
+            <h3>🛡️ O Filtro de Philippa Foot</h3>
+
+            <p id="footAnalysis"></p>
+
+        </div>
+
+    </div>
+
+    <div class="score">
+
+        <div class="score-item">
+            🧮 Bentham:
+            <span id="benthamScore">0</span>
+        </div>
+
+        <div class="score-item">
+            🛡️ Foot:
+            <span id="footScore">0</span>
+        </div>
+
+    </div>
+
+    <button
+        id="nextButton"
+        class="primary"
+        onclick="nextDilemma()"
+    >
+        PRÓXIMO JULGAMENTO
+    </button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- RESULTADO FINAL -->
+<!-- ========================= -->
+
+<section id="resultScreen" class="card result hidden">
+
+    <div class="crest">
+        🏛️
+    </div>
+
+    <div class="eyebrow">
+        VEREDITO FINAL
+    </div>
+
+    <h1 id="profileTitle" class="result-title"></h1>
+
+    <div id="finalScore" class="final-score"></div>
+
+    <p id="profileDescription" class="profile-description"></p>
+
+    <div class="divider"></div>
+
+    <p class="final-note">
+        Este resultado representa apenas uma interpretação
+        educativa das escolhas feitas durante o jogo.
+        Não é um diagnóstico definitivo da sua filosofia moral.
+    </p>
+
+    <button class="primary" onclick="restartGame()">
+        🔄 JOGAR NOVAMENTE
+    </button>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DADOS DOS DILEMAS
+   ========================================================= */
+
+const dilemmas = [
+
+    {
+        title: "🚋 Dilema 1 — O Bonde",
+
+        context:
+        "Um bonde perdeu o controle e está descendo em direção a cinco pessoas presas nos trilhos. Você está ao lado de uma alavanca. Se puxá-la, o bonde será desviado para outro trilho, onde há uma pessoa.",
+
+        optionA:
+        "Puxar a alavanca, desviando o bonde e salvando cinco pessoas ao custo de uma.",
+
+        optionB:
+        "Não puxar a alavanca e deixar o bonde seguir seu curso.",
+
+        bentham:
+        "Em uma simplificação didática, podemos representar cinco pessoas salvas como +500 Hedons e uma pessoa perdida como −100 Dolors. O saldo seria aproximadamente +400. Como Bentham prioriza a maior felicidade para o maior número, ele tende a favorecer a Opção A.",
+
+        foot:
+        "Foot torna o problema mais complexo. Você está intervindo diretamente para mudar o curso dos acontecimentos, mas a pessoa do segundo trilho não está sendo usada simplesmente como instrumento. Por isso, a Opção A pode ser moralmente defensável, embora não seja uma decisão simples.",
+
+        benthamPreferred: "A"
+    },
+
+    {
+        title: "🤐 Dilema 2 — O Segredo da Prova",
+
+        context:
+        "Você descobre que um colega colou em uma prova importante. O professor pergunta se alguém sabe quem fez isso. Seu colega pede que você fique em silêncio, dizendo que uma punição poderia prejudicar uma oportunidade acadêmica importante.",
+
+        optionA:
+        "Contar ao professor o que aconteceu, permitindo que a situação seja investigada.",
+
+        optionB:
+        "Ficar em silêncio para proteger seu colega.",
+
+        bentham:
+        "O silêncio traz benefícios imediatos ao seu colega e preserva a amizade, mas pode prejudicar outros alunos e a confiança na avaliação. Considerando o efeito coletivo, Bentham provavelmente tenderia à Opção A.",
+
+        foot:
+        "A situação coloca duas virtudes em conflito: lealdade e justiça. Proteger um amigo pode demonstrar lealdade, mas esconder uma fraude pode prejudicar a justiça da avaliação. A Opção B é compreensível, mas moralmente ambígua.",
+
+        benthamPreferred: "A"
+    },
+
+    {
+        title: "🏥 Dilema 3 — O Transplante",
+
+        context:
+        "Um médico possui cinco pacientes que precisam urgentemente de diferentes órgãos para sobreviver. Há também um paciente saudável fazendo exames de rotina. Seus órgãos seriam compatíveis com os cinco pacientes.",
+
+        optionA:
+        "Sacrificar o paciente saudável para utilizar seus órgãos e salvar os cinco pacientes.",
+
+        optionB:
+        "Não sacrificar o paciente saudável, mesmo sabendo que os cinco pacientes podem morrer.",
+
+        bentham:
+        "Se considerarmos apenas o número de vidas preservadas, salvar cinco pessoas em vez de uma produziria um saldo positivo muito maior. Em uma representação hipotética: +500 Hedons −100 Dolors = +400. Bentham tenderia à Opção A.",
+
+        foot:
+        "A Opção A envolve matar intencionalmente uma pessoa inocente e utilizar seu corpo como meio para atingir outro objetivo. Isso entra em forte conflito com justiça e com limites morais sobre causar dano. Por essa perspectiva, a Opção B é fortemente defensável.",
+
+        benthamPreferred: "A"
+    },
+
+    {
+        title: "🛡️ Dilema 4 — A Acusação Injusta",
+
+        context:
+        "Um colega está sendo acusado injustamente de quebrar um equipamento da escola. Você sabe que ele é inocente. A única maneira de impedir que seja punido é mentir ao professor, dizendo que estava com ele no momento do ocorrido.",
+
+        optionA:
+        "Mentir para proteger seu colega inocente.",
+
+        optionB:
+        "Dizer a verdade: você não estava com ele e não pode confirmar onde ele estava.",
+
+        bentham:
+        "A mentira pode impedir uma punição injusta e produzir benefícios concretos para uma pessoa inocente. Se os benefícios forem maiores que os danos causados pela mentira, Bentham pode favorecer a Opção A.",
+
+        foot:
+        "Honestidade é uma virtude importante, mas justiça também é. Se dizer toda a verdade resultar na punição de uma pessoa inocente, mentir pode ser entendido como uma tentativa de impedir uma injustiça. A Opção A é defensável, embora exista um conflito entre virtudes.",
+
+        benthamPreferred: "A"
+    },
+
+    {
+        title: "⚖️ Dilema 5 — O Último Leito",
+
+        context:
+        "Um hospital possui apenas um leito de UTI. Dois pacientes precisam dele. Um tem 80 anos e outro 25. Ambos possuem chances de recuperação semelhantes e não há outra diferença médica relevante.",
+
+        optionA:
+        "Dar o leito ao paciente de 25 anos, considerando que ele provavelmente possui mais anos de vida pela frente.",
+
+        optionB:
+        "Fazer um sorteio, dando aos dois pacientes uma chance igual.",
+
+        bentham:
+        "Se as probabilidades médicas forem iguais, Bentham poderia considerar a quantidade esperada de anos futuros de vida e tender à Opção A, caso isso represente maior bem-estar total.",
+
+        foot:
+        "A Opção B enfatiza a imparcialidade. A idade, sozinha, não significa que uma vida tenha menor valor moral. Um sorteio evita uma preferência arbitrária e dá aos dois pacientes uma chance igual.",
+
+        benthamPreferred: "A"
+    }
+
+];
+
+
+/* =========================================================
+   VARIÁVEIS DO JOGO
+   ========================================================= */
+
+let currentDilemma = 0;
+
+let benthamPoints = 0;
+
+let footPoints = 0;
+
+let hasAnswered = false;
+
+
+/* =========================================================
+   ELEMENTOS DA PÁGINA
+   ========================================================= */
+
+const startScreen =
+    document.getElementById("startScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const feedbackScreen =
+    document.getElementById("feedbackScreen");
+
+const resultScreen =
+    document.getElementById("resultScreen");
+
+const dilemmaCounter =
+    document.getElementById("dilemmaCounter");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const dilemmaTitle =
+    document.getElementById("dilemmaTitle");
+
+const dilemmaContext =
+    document.getElementById("dilemmaContext");
+
+const choices =
+    document.getElementById("choices");
+
+const choiceBadge =
+    document.getElementById("choiceBadge");
+
+const verdict =
+    document.getElementById("verdict");
+
+const benthamAnalysis =
+    document.getElementById("benthamAnalysis");
+
+const footAnalysis =
+    document.getElementById("footAnalysis");
+
+const benthamScore =
+    document.getElementById("benthamScore");
+
+const footScore =
+    document.getElementById("footScore");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const profileTitle =
+    document.getElementById("profileTitle");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const profileDescription =
+    document.getElementById("profileDescription");
+
+
+/* =========================================================
+   FUNÇÃO PARA ESCONDER/MOSTRAR TELAS
+   ========================================================= */
+
+function showScreen(screen) {
+
+    startScreen.classList.add("hidden");
+
+    gameScreen.classList.add("hidden");
+
+    feedbackScreen.classList.add("hidden");
+
+    resultScreen.classList.add("hidden");
+
+    screen.classList.remove("hidden");
+}
+
+
+/* =========================================================
+   INICIAR
+   ========================================================= */
+
+function startGame() {
+
+    currentDilemma = 0;
+
+    benthamPoints = 0;
+
+    footPoints = 0;
+
+    showDilemma();
+}
+
+
+/* =========================================================
+   MOSTRAR DILEMA
+   ========================================================= */
+
+function showDilemma() {
+
+    hasAnswered = false;
+
+    const d = dilemmas[currentDilemma];
+
+    showScreen(gameScreen);
+
+    dilemmaCounter.textContent =
+        `DILEMA ${currentDilemma + 1} DE ${dilemmas.length}`;
+
+    const percentage =
+        ((currentDilemma + 1) / dilemmas.length) * 100;
+
+    progressBar.style.width =
+        percentage + "%";
+
+    dilemmaTitle.textContent =
+        d.title;
+
+    dilemmaContext.textContent =
+        d.context;
+
+    choices.innerHTML = `
+
+        <button
+            class="option"
+            onclick="choose('A')"
+        >
+            <strong>OPÇÃO A</strong><br><br>
+            ${d.optionA}
+        </button>
+
+        <button
+            class="option"
+            onclick="choose('B')"
+        >
+            <strong>OPÇÃO B</strong><br><br>
+            ${d.optionB}
+        </button>
+
+    `;
+}
+
+
+/* =========================================================
+   ESCOLHA
+   ========================================================= */
+
+function choose(option) {
+
+    if (hasAnswered) {
+        return;
+    }
+
+    hasAnswered = true;
+
+    const d =
+        dilemmas[currentDilemma];
+
+    /*
+        Sistema educativo:
+        a escolha que coincide com a preferência
+        consequencialista recebe ponto Bentham.
+        A outra recebe ponto Foot.
+    */
+
+    if (option === d.benthamPreferred) {
+
+        benthamPoints++;
+
+    } else {
+
+        footPoints++;
+
+    }
+
+    showFeedback(option);
+}
+
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+function showFeedback(option) {
+
+    const d =
+        dilemmas[currentDilemma];
+
+    showScreen(feedbackScreen);
+
+    choiceBadge.textContent =
+        `DILEMA ${currentDilemma + 1} — SUA ESCOLHA: ${option}`;
+
+    if (option === "A") {
+
+        verdict.textContent =
+            "Você escolheu a Opção A.";
+
+    } else {
+
+        verdict.textContent =
+            "Você escolheu a Opção B.";
+
+    }
+
+    benthamAnalysis.textContent =
+        d.bentham;
+
+    footAnalysis.textContent =
+        d.foot;
+
+    benthamScore.textContent =
+        benthamPoints;
+
+    footScore.textContent =
+        footPoints;
+
+    if (
+        currentDilemma ===
+        dilemmas.length - 1
+    ) {
+
+        nextButton.textContent =
+            "🏆 VER MEU PERFIL ÉTICO";
+
+    } else {
+
+        nextButton.textContent =
+            "PRÓXIMO JULGAMENTO →";
+
+    }
+}
+
+
+/* =========================================================
+   PRÓXIMO DILEMA
+   ========================================================= */
+
+function nextDilemma() {
+
+    if (
+        currentDilemma <
+        dilemmas.length - 1
+    ) {
+
+        currentDilemma++;
+
+        showDilemma();
+
+    } else {
+
+        showFinalResult();
+
+    }
+}
+
+
+/* =========================================================
+   RESULTADO FINAL
+   ========================================================= */
+
+function showFinalResult() {
+
+    showScreen(resultScreen);
+
+    finalScore.textContent =
+        `🧮 ${benthamPoints} × ${footPoints} 🛡️`;
+
+    if (
+        benthamPoints >
+        footPoints
+    ) {
+
+        profileTitle.textContent =
+            "⚡ Tendência Bentham";
+
+        profileDescription.textContent =
+            "Suas escolhas deram maior peso às consequências das ações e à quantidade total de benefício ou sofrimento produzido. Você demonstrou uma tendência mais consequencialista: para você, o resultado final tem grande importância na avaliação moral.";
+
+    }
+
+    else if (
+        footPoints >
+        benthamPoints
+    ) {
+
+        profileTitle.textContent =
+            "🛡️ Tendência Foot";
+
+        profileDescription.textContent =
+            "Suas escolhas deram maior peso à justiça, à imparcialidade, às virtudes e aos limites morais que não deveriam ser ultrapassados mesmo quando uma alternativa poderia produzir um resultado numericamente melhor.";
+
+    }
+
+    else {
+
+        profileTitle.textContent =
+            "⚖️ Perfil Equilibrado";
+
+        profileDescription.textContent =
+            "Você alternou entre considerar as consequências e respeitar princípios de justiça e virtude. Nenhuma das duas perspectivas dominou claramente suas decisões.";
+
+    }
+
+}
+
+
+/* =========================================================
+   REINICIAR
+   ========================================================= */
+
+function restartGame() {
+
+    currentDilemma = 0;
+
+    benthamPoints = 0;
+
+    footPoints = 0;
+
+    hasAnswered = false;
+
+    showScreen(startScreen);
+
+}
+
+</script>
+
+</body>
+</html>
